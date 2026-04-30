@@ -12,6 +12,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 Puedes validar las versiones con:
 
 node -- version
+
 npm --version
 
 ## Instalación
