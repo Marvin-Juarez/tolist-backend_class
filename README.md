@@ -11,6 +11,9 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
 Puedes validar las versiones con:
 
+node -- version
+npm --version
+
 ## Instalación
 1. Clona el repositorio y entra a la carpeta del backend. cd backend
 2. Instala las dependencias:, npm install
