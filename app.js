@@ -1,10 +1,12 @@
-var createError = require('http-errors');
+var createError = require('http-errors'); 
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
+var cookieParser = require('cookie-parser'); 
+var logger = require('morgan'); 
+var cors = require('cors'); 
 var { connectDB } = require('./config/db');
+var initMysql = require("./config/initMysql");
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,6 +14,7 @@ var tasksRouter = require('./routes/tasks');
 var goalsRouter = require('./routes/goals');
 
 var app = express();
+let mysqlDB = null;
 
 async function initializeDatabase() {
     try {
@@ -19,13 +22,19 @@ async function initializeDatabase() {
             await connectDB();
             console.log("MongoDB conectado");
         }
-    } catch (error) {
+
+         if (process.env.DATABASE === 'MYSQL') {
+             mysqlDB = await initMysql();
+             console.log("MySQL conectado y tablas verificadas");
+         }
+     }catch (error) {
         console.error("Error inicializando base de datos:", error);
     }
-}
+ }
 
 initializeDatabase()
 // view engine setup
+app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 

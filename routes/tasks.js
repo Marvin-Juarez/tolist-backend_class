@@ -36,7 +36,7 @@ const db = req.db;
     }
 });
 
-router.post('/addGoal', async function(req, res, next) {
+router.post('/addTask', async function(req, res, next) {
         const db = req.db;
     if(req.body && req.body.name && req.body.description && req.body.duedate){
 
